@@ -4,7 +4,7 @@
 ionic start studyfeed sidemenu
 cd studyfeed
 ionic serve
-ionic serve -p $PORT --nolivereload
+ionic serve -a $IP -p $PORT --no-livereload
 
 
 ionic g page intro
