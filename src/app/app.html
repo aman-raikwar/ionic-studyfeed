@@ -1,0 +1,23 @@
+<ion-menu [content]="content">
+  <ion-content>
+    <div class="profile-area" padding>
+      <img src="assets/imgs/avatar.png" />
+      <p class="user-name">Hello Aman!</p>
+      <!-- <ion-buttons end>
+        <button ion-button icon-only (click)="sort()">
+          <ion-icon name="funnel"></ion-icon>
+        </button>
+      </ion-buttons> -->
+    </div>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <button menuClose ion-item (click)="logout()">
+        Sign Out
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

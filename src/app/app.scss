@@ -1,0 +1,55 @@
+.toolbar-background-md {
+  background: linear-gradient(to bottom right, #FF9800, #F44336);
+  border-color: transparent;
+}
+
+.toolbar-title-md {
+  color: #fff;
+}
+
+.bar-button-default-md,
+.bar-button-clear-md-default,
+.bar-button-md-default {
+  color: #Fff;
+  background-color: transparent;
+}
+
+.profile-area {
+  height: 250px;
+  position: relative;
+}
+
+.profile-area img {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  height: 100%;
+}
+
+.menu-inner .scroll-content {
+  background: linear-gradient(to bottom right, #FF9800, #F44336);
+  border-color: transparent;
+}
+
+.menu-inner .scroll-content ion-list .item-md {
+  background-color: transparent;
+  color: #fff;
+}
+
+.profile-area p.user-name {
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  margin: 0 0px 10px 10px;
+  color: #000;
+}
+
+ion-app.md [padding] {
+  padding: 0;
+}
+
+.menu-inner {
+  width: 250px;
+}
