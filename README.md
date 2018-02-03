@@ -4,6 +4,7 @@
 ionic start studyfeed sidemenu
 cd studyfeed
 ionic serve
+ionic serve -p $PORT --nolivereload
 
 
 ionic g page intro
