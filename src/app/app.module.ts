@@ -26,6 +26,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestApiProvider } from '../providers/rest-api/rest-api';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,8 +36,8 @@ import { RestApiProvider } from '../providers/rest-api/rest-api';
     SigninPage,
     ForgotpasswordPage,
     HomePage,
-    CountryPage, 
-    CountryDetailPage,   
+    CountryPage,
+    CountryDetailPage,
     NotesPage,
     ContactsPage,
     LadderPage,
@@ -48,6 +50,7 @@ import { RestApiProvider } from '../providers/rest-api/rest-api';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -58,17 +61,17 @@ import { RestApiProvider } from '../providers/rest-api/rest-api';
     ForgotpasswordPage,
     HomePage,
     CountryPage,
-    CountryDetailPage,   
+    CountryDetailPage,
     NotesPage,
     ContactsPage,
-    LadderPage    
+    LadderPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestApiProvider
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule {}
+export class AppModule { }

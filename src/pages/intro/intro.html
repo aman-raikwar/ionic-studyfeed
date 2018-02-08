@@ -1,31 +1,35 @@
 <ion-content>
-  <ion-slides pager parallax>
-    <ion-slide *ngFor="let slide of slides">
-      <!-- <ion-toolbar>
-        <ion-buttons end>
-          <button ion-button color="primary" (click)="navHome()">Skip</button>
-        </ion-buttons>
-      </ion-toolbar> -->
-      <img [src]="slide.image" class="slide-image" />
-      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
-      <p [innerHTML]="slide.description"></p>
+  <ion-slides pager (ionSlideDrag)="slideMoved()">
+    <ion-slide>
+      <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+        <ion-icon ios="ios-analytics" md="md-analytics" color="primary" [@bounce]='state' (@bounce.done)="animationDone()"></ion-icon>
+      </div>
+      <div [@bounce]='state'>
+        <h2>track your routine</h2>
+        <p>whether it's sets, reps, weight used, you can track it all with our intuitive interface.</p>
+      </div>
     </ion-slide>
-    <!-- <ion-slide>
-      <ion-toolbar></ion-toolbar>
-      <img src="assets/imgs/intro-img-1.png" class="slide-image" />
-      <h2 class="slide-title">Ready to Play?</h2>
-      <button ion-button large clear icon-end color="primary" (click)="navHome()">
-        Continue
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
-    </ion-slide> -->
-  </ion-slides>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+        <ion-icon ios="ios-trophy" md="md-trophy" color="primary" [@bounce]='state'></ion-icon>
+      </div>
+      <div [@bounce]='state'>
+        <h2>set personal goals</h2>
+        <p>we're all in the gym for a reason: goals. set goals for diet and fitness.</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+        <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary" [@bounce]='state'></ion-icon>
+      </div>
+      <div [@bounce]='state'>
+        <h2>chat with others</h2>
+        <p>inspire and help each other reach fitness and diet goals.</p>
+      </div>
+    </ion-slide>
+  </ion-slides>  
   <div class="bottom-accounts-btns">
-    <button ion-button icon-start (click)="openSignUpPage()">
-      Sign Up
-    </button>
-    <button ion-button icon-end (click)="openSignInPage()">
-      Sign In
-    </button>
+    <button ion-button icon-start (click)="openSignUpPage()">Sign Up</button>
+    <button ion-button icon-end (click)="openSignInPage()">Sign In</button>
   </div>
 </ion-content>

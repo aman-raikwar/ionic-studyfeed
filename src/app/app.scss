@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+
+ion-content {
+    background-color: #EFEFEF !important;
+    font-family: 'Raleway';
+}
+
+.button-md {
+  font-weight: 600;
+}
+
 .toolbar-background-md {
-  background: linear-gradient(to bottom right, #FF9800, #F44336);
-  border-color: transparent;
+  background: linear-gradient(to bottom right, #C400FF, #C400FF);
+  border-color: transparent;  
 }
 
 .toolbar-title-md {
@@ -27,7 +38,7 @@
 }
 
 .menu-inner .scroll-content {
-  background: linear-gradient(to bottom right, #FF9800, #F44336);
+  background: linear-gradient(to bottom right, #C400FF, #C400FF);
   border-color: transparent;
 }
 
@@ -52,4 +63,16 @@ ion-app.md [padding] {
 
 .menu-inner {
   width: 250px;
+
+  ion-label {
+    font-weight: 600;
+  }
+}
+
+.searchbar-md {
+  background: inherit;
+  padding-bottom: 8px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
 }

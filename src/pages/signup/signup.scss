@@ -1,57 +1,56 @@
 page-signup {
   .page-header {
     text-align: center;
-    color: #f55033;
+    color: #C400FF;
   }
   
   .login-container {
     width: 80%;
     margin: 0 auto;
-    position: absolute;
+    position: absolute;    
     bottom: 5%;
-    top: 5%;
     right: 0;
     left: 0;
     background: #fff;
     padding: 25px;
   }
 
-  .content-md {
-    background: linear-gradient(to bottom right, #FF9800, #F44336);
-    border-color: transparent;
-    cursor: pointer;
-  }
+  // .content-md {
+  //   background: linear-gradient(to bottom right, #FF9800, #F44336);
+  //   border-color: transparent;
+  //   cursor: pointer;
+  // }
 
   .item-md {
     background: transparent;
     padding: 0;
   }
 
-  .button-md {
-    background: #FF9800;
-    font-size: 1.6em;
-    padding: 25px;
-    display: inline-block;
-    margin-top: 25px;
-  }
+  // .button-md {
+  //   background: #FF9800;
+  //   font-size: 1.6em;
+  //   padding: 25px;
+  //   display: inline-block;
+  //   margin-top: 25px;
+  // }
 
   .item-input-has-focus .label-md[stacked],
   .input-has-focus .label-md[stacked],
   .item-input-has-focus .label-md[floating],
   .input-has-focus .label-md[floating] {
-    color: #f55033;
+    color: #C400FF;
   }
 
   .item-input .label-md,
   .item-select .label-md,
   .item-datetime .label-md {
-    color: #f55033;
+    color: #C400FF;
   }
 
   .item-md.item-input.item-input-has-focus .item-inner,
   .item-md.item-input.input-has-focus .item-inner {
-    border-bottom-color: #f55033;
-    box-shadow: inset 0 -1px 0 0 #f55033;
+    border-bottom-color: #C400FF;
+    box-shadow: inset 0 -1px 0 0 #C400FF;
   }
 
   .focus-outline :focus {
@@ -62,7 +61,7 @@ page-signup {
     display: block;
     margin: 0 auto;
     font-size: 1.2em;
-    color: #f55230;
+    color: #C400FF;
     background: transparent;
     margin-top: 15px;
     cursor: pointer;
