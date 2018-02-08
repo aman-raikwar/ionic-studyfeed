@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { IntroPage } from '../pages/intro/intro';
 import { HomePage } from '../pages/home/home';
@@ -20,7 +21,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private fire: AngularFireAuth, private alertCtrl: AlertController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -50,6 +51,10 @@ export class MyApp {
   }
 
   logout() {
-    this.nav.setRoot(IntroPage); 
+    this.fire.auth.signOut().then(data => {
+      this.nav.setRoot(IntroPage);
+    }).catch(error => {
+      this.alertCtrl.create({title: 'Info!', subTitle: 'Unable to Sign Out!', buttons: ['OK']}).present();
+    })
   }
 }

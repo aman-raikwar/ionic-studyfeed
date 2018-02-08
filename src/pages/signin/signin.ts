@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../../pages/home/home';
@@ -12,29 +12,27 @@ import { ForgotpasswordPage } from '../../pages/forgotpassword/forgotpassword';
 })
 export class SigninPage {
 
-  @ViewChild('username') username;
+  @ViewChild('email') email;
   @ViewChild('password') password;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
 
   }
 
   alert(message: string) {
-    this.alertCtrl.create({
-      title: 'Info!',
-      subTitle: message,
-      buttons: ['OK']
-    }).present();
+    this.alertCtrl.create({title: 'Info!', subTitle: message, buttons: ['OK']}).present();
   }
 
   signIn() {
-    console.log('Sign In using, ', this.username.value, this.password.value);
-    this.fire.auth.signInWithEmailAndPassword(this.username.value, this.password.value).then(data => {
-      console.log('got data', data);
-      console.log(this.fire.auth.currentUser);
+    console.log('Sign In using, ', this.email.value, this.password.value);
+    let loader = this.loadingCtrl.create({content: 'Processing'});
+    loader.present();
+    this.fire.auth.signInWithEmailAndPassword(this.email.value, this.password.value).then(data => {
+      loader.dismiss();
       this.alert('You are logged in!');
       this.navCtrl.setRoot(HomePage);
     }).catch(error => {
+      loader.dismiss();
       console.log('got an error', error);
       this.alert(error.message);
     })
@@ -45,7 +43,6 @@ export class SigninPage {
   }
 
   forgotPassword() {
-  	//this.navCtrl.pop();
   	this.navCtrl.push(ForgotpasswordPage);
   }
 

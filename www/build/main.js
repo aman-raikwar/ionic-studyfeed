@@ -57,7 +57,7 @@ var IntroPage = (function () {
     };
     IntroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-intro',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/intro/intro.html"*/'<ion-content>\n  <ion-slides pager parallax>\n    <ion-slide *ngFor="let slide of slides">\n      <!-- <ion-toolbar>\n        <ion-buttons end>\n          <button ion-button color="primary" (click)="navHome()">Skip</button>\n        </ion-buttons>\n      </ion-toolbar> -->\n      <img [src]="slide.image" class="slide-image" />\n      <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n    <!-- <ion-slide>\n      <ion-toolbar></ion-toolbar>\n      <img src="assets/imgs/intro-img-1.png" class="slide-image" />\n      <h2 class="slide-title">Ready to Play?</h2>\n      <button ion-button large clear icon-end color="primary" (click)="navHome()">\n        Continue\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-slide> -->\n  </ion-slides>\n  <div class="bottom-accounts-btns">\n    <button ion-button icon-start (click)="openSignUpPage()">\n      Sign Up\n    </button>\n    <button ion-button icon-end (click)="openSignInPage()">\n      Sign In\n    </button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/intro/intro.html"*/,
+            selector: 'page-intro',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/intro/intro.html"*/'<ion-content>\n  <ion-slides pager parallax>\n    <ion-slide *ngFor="let slide of slides">\n      <!-- <ion-toolbar>\n        <ion-buttons end>\n          <button ion-button color="primary" (click)="navHome()">Skip</button>\n        </ion-buttons>\n      </ion-toolbar> -->\n      <img [src]="slide.image" class="slide-image" />\n      <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n    <!-- <ion-slide>\n      <ion-toolbar></ion-toolbar>\n      <img src="assets/imgs/intro-img-1.png" class="slide-image" />\n      <h2 class="slide-title">Ready to Play?</h2>\n      <button ion-button large clear icon-end color="primary" (click)="navHome()">\n        Continue\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-slide> -->\n  </ion-slides>\n  <div class="bottom-accounts-btns">\n    <button ion-button icon-start (click)="openSignUpPage()">\n      Sign Up\n    </button>\n    <button ion-button icon-end (click)="openSignInPage()">\n      Sign In\n    </button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/intro/intro.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], IntroPage);
@@ -95,28 +95,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var SigninPage = (function () {
-    function SigninPage(navCtrl, navParams, fire, alertCtrl) {
+    function SigninPage(navCtrl, navParams, fire, alertCtrl, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.fire = fire;
         this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
     }
     SigninPage.prototype.alert = function (message) {
-        this.alertCtrl.create({
-            title: 'Info!',
-            subTitle: message,
-            buttons: ['OK']
-        }).present();
+        this.alertCtrl.create({ title: 'Info!', subTitle: message, buttons: ['OK'] }).present();
     };
     SigninPage.prototype.signIn = function () {
         var _this = this;
-        console.log('Sign In using, ', this.username.value, this.password.value);
-        this.fire.auth.signInWithEmailAndPassword(this.username.value, this.password.value).then(function (data) {
-            console.log('got data', data);
-            console.log(_this.fire.auth.currentUser);
+        console.log('Sign In using, ', this.email.value, this.password.value);
+        var loader = this.loadingCtrl.create({ content: 'Processing' });
+        loader.present();
+        this.fire.auth.signInWithEmailAndPassword(this.email.value, this.password.value).then(function (data) {
+            loader.dismiss();
             _this.alert('You are logged in!');
             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
         }).catch(function (error) {
+            loader.dismiss();
             console.log('got an error', error);
             _this.alert(error.message);
         });
@@ -125,24 +124,24 @@ var SigninPage = (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__pages_intro_intro__["a" /* IntroPage */]);
     };
     SigninPage.prototype.forgotPassword = function () {
-        //this.navCtrl.pop();
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__pages_forgotpassword_forgotpassword__["a" /* ForgotpasswordPage */]);
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('username'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('email'),
         __metadata("design:type", Object)
-    ], SigninPage.prototype, "username", void 0);
+    ], SigninPage.prototype, "email", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('password'),
         __metadata("design:type", Object)
     ], SigninPage.prototype, "password", void 0);
     SigninPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-signin',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/signin/signin.html"*/'<ion-content padding>\n  <ion-list class="login-container">\n    <h2 class="page-header">Sign In</h2>\n    <ion-item>\n      <ion-label floating>Username</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n    <button ion-button block color="primary" (click)="signIn()">Submit</button>\n    <button class="back-to" (click)="forgotPassword()">Forgot Password ?</button>\n    <button class="back-to" (click)="signUp()">Don\'t have account, Click here!</button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/signin/signin.html"*/,
+            selector: 'page-signin',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/signin/signin.html"*/'<ion-content padding>\n  <ion-list class="login-container">\n    <h2 class="page-header">Sign In</h2>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #email></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n    <button ion-button block color="primary" (click)="signIn()">Submit</button>\n    <button class="back-to" (click)="forgotPassword()">Forgot Password ?</button>\n    <button class="back-to" (click)="signUp()">Don\'t have account, Click here!</button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/signin/signin.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _e || Object])
     ], SigninPage);
     return SigninPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=signin.js.map
@@ -216,17 +215,12 @@ var SignupPage = (function () {
         this.navCtrl.pop();
     };
     SignupPage.prototype.alert = function (message) {
-        this.alertCtrl.create({
-            title: 'Info!',
-            subTitle: message,
-            buttons: ['OK']
-        }).present();
+        this.alertCtrl.create({ title: 'Info!', subTitle: message, buttons: ['OK'] }).present();
     };
     SignupPage.prototype.signUp = function () {
         var _this = this;
-        console.log('Sign Up using, ', this.username.value, this.password.value);
-        this.fire.auth.createUserWithEmailAndPassword(this.username.value, this.password.value).then(function (data) {
-            console.log('got data', data);
+        console.log('Sign Up using, ', this.email.value, this.password.value);
+        this.fire.auth.createUserWithEmailAndPassword(this.email.value, this.password.value).then(function (data) {
             _this.alert('Registered!');
             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
         }).catch(function (error) {
@@ -235,16 +229,16 @@ var SignupPage = (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('username'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('email'),
         __metadata("design:type", Object)
-    ], SignupPage.prototype, "username", void 0);
+    ], SignupPage.prototype, "email", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('password'),
         __metadata("design:type", Object)
     ], SignupPage.prototype, "password", void 0);
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/signup/signup.html"*/'<ion-content padding>\n  <ion-list class="login-container">\n    <h2 class="page-header">Sign Up</h2>\n    <!-- <ion-item>\n      <ion-label floating>Name</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item> -->\n    <!-- <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" value=""></ion-input>\n    </ion-item> -->\n    <ion-item>\n      <ion-label floating>Username</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n    <button ion-button block color="primary" (click)="signUp()">Submit</button>\n    <button class="back-to" (click)="signIn()">Click here to Sign In!</button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/signup/signup.html"*/,
+            selector: 'page-signup',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/signup/signup.html"*/'<ion-content padding>\n  <ion-list class="login-container">\n    <h2 class="page-header">Sign Up</h2>\n    <!-- <ion-item>\n      <ion-label floating>Name</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item> -->\n    <!-- <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" value=""></ion-input>\n    </ion-item> -->\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" #email></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n    <button ion-button block color="primary" (click)="signUp()">Submit</button>\n    <button class="back-to" (click)="signIn()">Click here to Sign In!</button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/signup/signup.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], SignupPage);
@@ -291,7 +285,7 @@ var ForgotpasswordPage = (function () {
     };
     ForgotpasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-forgotpassword',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/forgotpassword/forgotpassword.html"*/'<ion-content padding>\n  <img src="assets/imgs/logo-2.png" class="slide-image" />\n  <ion-list class="login-container">\n    <h2 class="page-header">Forgot Password</h2>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n    <button ion-button block color="primary" (click)="forgotPassword()">Send</button>\n    <button class="back-to" (click)="signIn()">Back to Sign In</button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/forgotpassword/forgotpassword.html"*/,
+            selector: 'page-forgotpassword',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/forgotpassword/forgotpassword.html"*/'<ion-content padding>\n  <img src="assets/imgs/logo-2.png" class="slide-image" />\n  <ion-list class="login-container">\n    <h2 class="page-header">Forgot Password</h2>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n    <button ion-button block color="primary" (click)="forgotPassword()">Send</button>\n    <button class="back-to" (click)="signIn()">Back to Sign In</button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/forgotpassword/forgotpassword.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], ForgotpasswordPage);
@@ -352,7 +346,7 @@ var CountryPage = (function () {
     };
     CountryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-country',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/country/country.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Country List</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="sort()">\n        <ion-icon name="funnel"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-searchbar [(ngModel)]="terms"></ion-searchbar>\n  <ion-list>\n    <ion-item *ngFor="let c of countries | search : terms | sort: {property: column, order: order}" (click)="onSelect(c)" [class.selected]="c === selectedCountry">\n      <ion-avatar item-left>\n        <img src="{{c.flag}}">\n      </ion-avatar>\n      <h2>{{c.name}}</h2>\n      <p>Capital: {{c.capital}}, Region: {{c.region}}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/country/country.html"*/,
+            selector: 'page-country',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/country/country.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Country List</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="sort()">\n        <ion-icon name="funnel"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-searchbar [(ngModel)]="terms"></ion-searchbar>\n  <ion-list>\n    <ion-item *ngFor="let c of countries | search : terms | sort: {property: column, order: order}" (click)="onSelect(c)" [class.selected]="c === selectedCountry">\n      <ion-avatar item-left>\n        <img src="{{c.flag}}">\n      </ion-avatar>\n      <h2>{{c.name}}</h2>\n      <p>Capital: {{c.capital}}, Region: {{c.region}}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/country/country.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_rest_api_rest_api__["a" /* RestApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
     ], CountryPage);
@@ -454,7 +448,7 @@ var CountryDetailPage = (function () {
     };
     CountryDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-country-detail',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/country-detail/country-detail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{selectedCountry.name}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <img src="{{selectedCountry.flag}}">\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/country-detail/country-detail.html"*/,
+            selector: 'page-country-detail',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/country-detail/country-detail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{selectedCountry.name}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <img src="{{selectedCountry.flag}}">\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/country-detail/country-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], CountryDetailPage);
@@ -557,7 +551,7 @@ var NotesPage = (function () {
     };
     NotesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-notes',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/notes/notes.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Notes</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addNote()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-list>\n    <ion-item-sliding *ngFor="let note of notes">\n      <ion-item>\n        {{note.title}}\n      </ion-item>\n      <ion-item-options>\n        <button ion-button icon-only (click)="editNote(note)" light>\n          <ion-icon name="paper"></ion-icon>\n        </button>\n        <button ion-button icon-only (click)="deleteNote(note)" danger>\n          <ion-icon name="trash"></ion-icon>\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/notes/notes.html"*/,
+            selector: 'page-notes',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/notes/notes.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Notes</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addNote()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-list>\n    <ion-item-sliding *ngFor="let note of notes">\n      <ion-item>\n        {{note.title}}\n      </ion-item>\n      <ion-item-options>\n        <button ion-button icon-only (click)="editNote(note)" light>\n          <ion-icon name="paper"></ion-icon>\n        </button>\n        <button ion-button icon-only (click)="deleteNote(note)" danger>\n          <ion-icon name="trash"></ion-icon>\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/notes/notes.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], NotesPage);
@@ -631,7 +625,7 @@ var ContactsPage = (function () {
     };
     ContactsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-contacts',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/contacts/contacts.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Contacts</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-item-group *ngFor="let group of groupedContacts">\n    <ion-item-divider light>{{group.letter}}</ion-item-divider>\n    <ion-item *ngFor="let contact of group.contacts">{{contact}}</ion-item>\n  </ion-item-group>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/contacts/contacts.html"*/,
+            selector: 'page-contacts',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/contacts/contacts.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Contacts</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-item-group *ngFor="let group of groupedContacts">\n    <ion-item-divider light>{{group.letter}}</ion-item-divider>\n    <ion-item *ngFor="let contact of group.contacts">{{contact}}</ion-item>\n  </ion-item-group>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/contacts/contacts.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], ContactsPage);
@@ -690,7 +684,7 @@ var LadderPage = (function () {
     };
     LadderPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-ladder',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/ladder/ladder.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Ladder</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">\n    <ion-item *ngFor="let team of ladder; let i = index;">{{i+1}}. {{team}}</ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/ladder/ladder.html"*/,
+            selector: 'page-ladder',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/ladder/ladder.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Ladder</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">\n    <ion-item *ngFor="let team of ladder; let i = index;">{{i+1}}. {{team}}</ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/ladder/ladder.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], LadderPage);
@@ -939,12 +933,13 @@ var SortPipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_intro_intro__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_country_country__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_notes_notes__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_contacts_contacts__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_ladder_ladder__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_intro_intro__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_country_country__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_notes_notes__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_contacts_contacts__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ladder_ladder__ = __webpack_require__(262);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -964,20 +959,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen) {
+    function MyApp(platform, statusBar, splashScreen, fire, alertCtrl) {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_intro_intro__["a" /* IntroPage */];
+        this.fire = fire;
+        this.alertCtrl = alertCtrl;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_intro_intro__["a" /* IntroPage */];
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */] },
-            { title: 'Country List', component: __WEBPACK_IMPORTED_MODULE_6__pages_country_country__["a" /* CountryPage */] },
-            { title: 'Notes', component: __WEBPACK_IMPORTED_MODULE_7__pages_notes_notes__["a" /* NotesPage */] },
-            { title: 'Contacts', component: __WEBPACK_IMPORTED_MODULE_8__pages_contacts_contacts__["a" /* ContactsPage */] },
-            { title: 'Ladder - Order', component: __WEBPACK_IMPORTED_MODULE_9__pages_ladder_ladder__["a" /* LadderPage */] }
+            { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */] },
+            { title: 'Country List', component: __WEBPACK_IMPORTED_MODULE_7__pages_country_country__["a" /* CountryPage */] },
+            { title: 'Notes', component: __WEBPACK_IMPORTED_MODULE_8__pages_notes_notes__["a" /* NotesPage */] },
+            { title: 'Contacts', component: __WEBPACK_IMPORTED_MODULE_9__pages_contacts_contacts__["a" /* ContactsPage */] },
+            { title: 'Ladder - Order', component: __WEBPACK_IMPORTED_MODULE_10__pages_ladder_ladder__["a" /* LadderPage */] }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -995,18 +993,24 @@ var MyApp = (function () {
         this.nav.setRoot(page.component);
     };
     MyApp.prototype.logout = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_intro_intro__["a" /* IntroPage */]);
+        var _this = this;
+        this.fire.auth.signOut().then(function (data) {
+            _this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_5__pages_intro_intro__["a" /* IntroPage */]);
+        }).catch(function (error) {
+            _this.alertCtrl.create({ title: 'Info!', subTitle: 'Unable to Sign Out!', buttons: ['OK'] }).present();
+        });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-content>\n    <div class="profile-area" padding>\n      <img src="assets/imgs/avatar.png" />\n      <p class="user-name">Hello Aman!</p>\n      <!-- <ion-buttons end>\n        <button ion-button icon-only (click)="sort()">\n          <ion-icon name="funnel"></ion-icon>\n        </button>\n      </ion-buttons> -->\n    </div>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n      <button menuClose ion-item (click)="logout()">\n        Sign Out\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-content>\n    <div class="profile-area" padding>\n      <img src="assets/imgs/avatar.png" />\n      <p class="user-name">Hello Aman!</p>\n      <!-- <ion-buttons end>\n        <button ion-button icon-only (click)="sort()">\n          <ion-icon name="funnel"></ion-icon>\n        </button>\n      </ion-buttons> -->\n    </div>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n      <button menuClose ion-item (click)="logout()">\n        Sign Out\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -1042,12 +1046,11 @@ var HomePage = (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n	Hey User,<br>\n	{{email}}\n</ion-content>\n'/*ion-inline-end:"/home/aman/Desktop/Ionic/ionic-studyfeed/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n	Hey User,<br>\n	{{email}}\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/ionic-studyfeed/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map

@@ -10,7 +10,7 @@ import { HomePage } from '../../pages/home/home';
 })
 export class SignupPage {
 
-  @ViewChild('username') username;
+  @ViewChild('email') email;
   @ViewChild('password') password;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, private alertCtrl: AlertController) {
@@ -22,17 +22,12 @@ export class SignupPage {
   }
 
   alert(message: string) {
-    this.alertCtrl.create({
-      title: 'Info!',
-      subTitle: message,
-      buttons: ['OK']
-    }).present();
+    this.alertCtrl.create({title: 'Info!', subTitle: message, buttons: ['OK']}).present();
   }
 
   signUp() {
-  	console.log('Sign Up using, ', this.username.value, this.password.value);
-    this.fire.auth.createUserWithEmailAndPassword(this.username.value, this.password.value).then(data => {
-      console.log('got data', data);
+  	console.log('Sign Up using, ', this.email.value, this.password.value);
+    this.fire.auth.createUserWithEmailAndPassword(this.email.value, this.password.value).then(data => {
       this.alert('Registered!')
       this.navCtrl.setRoot(HomePage);
     }).catch(error => {
