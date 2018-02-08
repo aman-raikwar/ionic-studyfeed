@@ -1,14 +1,13 @@
 <ion-content padding>
-  <img src="assets/imgs/logo-2.png" class="slide-image" />
   <ion-list class="login-container">
     <h2 class="page-header">Sign In</h2>
     <ion-item>
       <ion-label floating>Username</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" #username></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" #password></ion-input>
     </ion-item>
     <button ion-button block color="primary" (click)="signIn()">Submit</button>
     <button class="back-to" (click)="forgotPassword()">Forgot Password ?</button>

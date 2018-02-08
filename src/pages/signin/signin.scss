@@ -3,22 +3,13 @@ page-signin {
     text-align: center;
     color: #f55033;
   }
-  .slide-image {
-    max-height: 50%;
-    max-width: 60%;
-    -webkit-box-shadow: 0px 0px 10px 5px white;
-    box-shadow: 0px 0px 10px 5px white;
-    background: #fff;
-    display: block;
-    margin: 0 auto;
-    margin-top: 80px;
-  }
-
+  
   .login-container {
     width: 80%;
     margin: 0 auto;
     position: absolute;
     bottom: 5%;
+    top: 5%;
     right: 0;
     left: 0;
     background: #fff;

@@ -21,3 +21,5 @@ ionic g page contacts
 ionic g page ladder
 ionic g page country-detail
 ionic generate component country-detail-form
+
+sudo npm install firebase angularfire2 --save
