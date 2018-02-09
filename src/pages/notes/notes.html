@@ -8,23 +8,28 @@
       <button ion-button icon-only (click)="addNote()">
         <ion-icon name="add"></ion-icon>
       </button>
+      <button ion-button icon-only (click)="deleteAllNotes()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-list>
-    <ion-item-sliding *ngFor="let note of notes">
+  
+	<ion-list>
+    <ion-item-sliding *ngFor="let note of notes | async">
       <ion-item>
-        {{note.title}}
+        {{note.name}}
       </ion-item>
       <ion-item-options>
-        <button ion-button icon-only (click)="editNote(note)" light>
+        <button ion-button icon-only (click)="editNote(note.key)" light>
           <ion-icon name="paper"></ion-icon>
         </button>
-        <button ion-button icon-only (click)="deleteNote(note)" danger>
+        <button ion-button icon-only (click)="deleteNote(note.key)" danger>
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  
 </ion-content>

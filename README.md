@@ -23,3 +23,10 @@ ionic g page country-detail
 ionic generate component country-detail-form
 
 sudo npm install firebase angularfire2 --save
+
+
+
+Notes:
+
+https://github.com/angular/angularfire2
+https://github.com/angular/angularfire2/blob/master/docs/rtdb/lists.md

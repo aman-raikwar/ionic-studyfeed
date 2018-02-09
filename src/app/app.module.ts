@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -50,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireDatabaseModule,
     BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
@@ -70,7 +72,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    RestApiProvider
+    RestApiProvider,
+    AngularFireDatabase
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

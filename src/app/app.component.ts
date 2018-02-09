@@ -17,7 +17,7 @@ import { LadderPage } from '../pages/ladder/ladder';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = IntroPage;
+  rootPage: any = NotesPage;
 
   pages: Array<{title: string, component: any}>;
 
