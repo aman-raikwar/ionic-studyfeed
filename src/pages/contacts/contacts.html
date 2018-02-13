@@ -7,8 +7,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-item-group *ngFor="let group of groupedContacts">
-    <ion-item-divider light>{{group.letter}}</ion-item-divider>
-    <ion-item *ngFor="let contact of group.contacts">{{contact}}</ion-item>
-  </ion-item-group>
+  <ion-list>
+    <ion-item *ngFor="let user of chatUsers | async" (click)="onSelect(user)">
+      <ion-avatar item-start>
+        <img src="assets/imgs/avatar.png">
+      </ion-avatar>
+      <h2>{{user.user_name}}</h2>
+    </ion-item>
+  </ion-list>
 </ion-content>

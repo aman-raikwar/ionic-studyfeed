@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Chat</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngFor="let chatMessage of chatMessagesList | async" class="messages">
+    <div [class]="chatMessage.user_id == user_id ? 'message right' : 'message left'">
+      {{ chatMessage.user_message }}
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-item>
+    <ion-input type="text" placeholder="Type your message..." [(ngModel)]="message"></ion-input>
+    <button ion-button clear item-right (click)="sendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-item>
+</ion-footer>

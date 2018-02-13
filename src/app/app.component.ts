@@ -15,43 +15,47 @@ import { LadderPage } from '../pages/ladder/ladder';
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
-
-  rootPage: any = NotesPage;
-
+  rootPage: any = ContactsPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private fire: AngularFireAuth, private alertCtrl: AlertController) {
-    this.initializeApp();
+  email: string;
+  displayName: string;
 
-    // used for an example of ngFor and navigation
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth, private alertCtrl: AlertController) {
+    this.initializeApp();
+    
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Country List', component: CountryPage },
       { title: 'Notes', component: NotesPage },
       { title: 'Contacts', component: ContactsPage },
       { title: 'Ladder - Order', component: LadderPage }
-    ];
-
+    ];    
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 
+  menuOpened() {    
+    if (this.afAuth.auth.currentUser !== null) {
+      this.email = this.afAuth.auth.currentUser.email;
+      this.displayName = this.afAuth.auth.currentUser.displayName;
+      console.log(this.email, this.displayName);
+    }
+  }
+
   logout() {
-    this.fire.auth.signOut().then(data => {
+    this.afAuth.auth.signOut().then(data => {
       this.nav.setRoot(IntroPage);
     }).catch(error => {
       this.alertCtrl.create({title: 'Info!', subTitle: 'Unable to Sign Out!', buttons: ['OK']}).present();

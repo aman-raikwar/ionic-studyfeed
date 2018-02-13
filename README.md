@@ -24,6 +24,10 @@ ionic generate component country-detail-form
 
 sudo npm install firebase angularfire2 --save
 
+ionic cordova run android --device
+
+
+
 
 
 Notes:

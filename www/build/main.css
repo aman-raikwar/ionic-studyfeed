@@ -25742,6 +25742,10 @@ ion-app.md [padding] {
   padding: 0;
 }
 
+ion-app.ios [padding] {
+  padding: 0;
+}
+
 .menu-inner {
   width: 250px;
 }
@@ -25756,6 +25760,34 @@ ion-app.md [padding] {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
+}
+
+page-chat .messages:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+page-chat .message {
+  display: inline-block;
+  background: #cb77fe;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 120%;
+}
+
+page-chat .message.left {
+  float: left;
+}
+
+page-chat .message.right {
+  float: right;
+}
+
+page-chat ion-footer .item-md {
+  padding: 0;
 }
 
 page-contacts .item-divider-md {

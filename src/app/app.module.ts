@@ -22,6 +22,7 @@ import { CountryDetailPage } from '../pages/country-detail/country-detail';
 import { NotesPage } from '../pages/notes/notes';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { LadderPage } from '../pages/ladder/ladder';
+import { ChatPage } from '../pages/chat/chat';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NotesPage,
     ContactsPage,
     LadderPage,
+    ChatPage,
     SearchPipe,
     SortPipe
   ],
@@ -66,14 +68,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CountryDetailPage,
     NotesPage,
     ContactsPage,
-    LadderPage
+    LadderPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestApiProvider,
-    AngularFireDatabase
+    AngularFireDatabase    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

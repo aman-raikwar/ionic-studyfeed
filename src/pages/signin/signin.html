@@ -3,13 +3,17 @@
     <h2 class="page-header">Sign In</h2>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="text" #email></ion-input>
+      <ion-input type="text" [(ngModel)]="user_email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password" #password></ion-input>
+      <ion-input type="password" [(ngModel)]="user_password"></ion-input>
     </ion-item>
     <button ion-button block color="primary" (click)="signIn()">Submit</button>
+    <!-- <h2 class="page-header">Sign In using Social</h2>
+    <button ion-button icon-only (click)="signInWithGoogle()">
+      <ion-icon name="logo-googleplus"></ion-icon>
+    </button> -->
     <!-- <button class="back-to" (click)="forgotPassword()">Forgot Password ?</button> -->
     <button class="back-to" (click)="signUp()">Don't have account, Click here!</button>
   </ion-list>

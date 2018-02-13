@@ -1,0 +1,30 @@
+page-chat {
+  .messages:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .message {
+    display: inline-block;
+    background: #cb77fe;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 120%;
+  }
+
+  .message.left {
+    float: left;
+  }
+
+  .message.right {
+    float: right;
+  }
+
+  ion-footer {
+    .item-md {
+      padding: 0;
+    }
+  }
+}

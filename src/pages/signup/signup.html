@@ -1,21 +1,17 @@
 <ion-content padding>
   <ion-list class="login-container">
     <h2 class="page-header">Sign Up</h2>
-    <!-- <ion-item>
+    <ion-item>
       <ion-label floating>Name</ion-label>
-      <ion-input type="text" value=""></ion-input>
-    </ion-item> -->
-    <!-- <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="email" value=""></ion-input>
-    </ion-item> -->
+      <ion-input type="text" [(ngModel)]="user_name"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="email" #email></ion-input>
+      <ion-input type="email" [(ngModel)]="user_email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password" #password></ion-input>
+      <ion-input type="password" [(ngModel)]="user_password"></ion-input>
     </ion-item>
     <button ion-button block color="primary" (click)="signUp()">Submit</button>
     <button class="back-to" (click)="signIn()">Click here to Sign In!</button>
